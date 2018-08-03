@@ -1,0 +1,153 @@
+<!-- AccountListview using basic aura iteration on a manually-built table -->
+<aura:component controller="AccountsController">
+    <aura:attribute name="accounts"
+                    type="Account[]" />
+    <aura:handler name="init"
+                  value="{!this}"
+                  action="{!c.doInit}" />
+
+
+    <!-- REQUIRED SLDS WRAPPER -->
+    <div class="slds-scope slds-theme_default slds-m-around_x-small">
+        <!-- MASTHEAD -->
+        <p class="slds-text-heading_label slds-m-bottom_small">
+            Salesforce Lightning Design System Trailhead Module
+        </p>
+        <!-- / MASTHEAD -->
+        <!-- PAGE HEADER -->
+        <div class="slds-page-header slds-theme_shade"
+             role="banner">
+            <div class="slds-grid">
+                <div class="slds-col slds-has-flexi-truncate">
+                    <!-- HEADING AREA -->
+                    <div class="slds-media">
+                        <div class="slds-media__figure">
+                            <!-- <span class="slds-icon_container slds-icon-standard-account"
+                                  title="Description of icon when needed">
+                                <svg class="slds-icon slds-page-header__icon"
+                                     aria-hidden="true">
+                                    <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                         xlink:href="/assets/icons/standard-sprite/svg/symbols.svg#user" />
+                                </svg>
+                            </span> -->
+                            <lightning:icon iconName="standard:user"
+                                            class="slds-icon-standard-account"
+                                            size="medium" />
+                            <!-- <svg class="slds-icon slds-icon_container slds-icon-standard-account"
+                                 aria-hidden="true">
+                                <use xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/standard-sprite/svg/symbols.svg#user')}"></use>
+                            </svg> -->
+                        </div>
+                        <div class="slds-media__body">
+                            <p class="slds-text-title_caps slds-line-height_reset">Accounts</p>
+                            <h1 class="slds-page-header__title slds-m-right_small slds-align-middle slds-truncate"
+                                title="My Accounts">My Accounts</h1>
+                        </div>
+                    </div>
+                    <!-- / HEADING AREA -->
+                </div>
+                <div class="slds-col slds-no-flex slds-grid slds-align-top">
+                    <button class="slds-button slds-button_neutral">New Account</button>
+                </div>
+            </div>
+            <div class="slds-grid">
+                <div class="slds-col slds-align-bottom slds-p-top_small">
+                    <p class="slds-text-body_small">COUNT items</p>
+                </div>
+            </div>
+        </div>
+        <!-- / PAGE HEADER -->
+        <!-- PRIMARY CONTENT WRAPPER -->
+        <div class="myapp">
+            <!-- CREATE NEW ACCOUNT -->
+            <div aria-labelledby="newaccountform">
+                <!-- CREATE NEW ACCOUNT FORM -->
+                <form class="slds-form_stacked"
+                      id="add-account-form">
+                    <!-- BOXED AREA -->
+                    <fieldset class="slds-box slds-theme_default slds-container_small">
+                        <legend id="newaccountform"
+                                class="slds-text-heading_medium slds-p-vertical_medium">Add a new account</legend>
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label"
+                                   for="account-name">Name</label>
+                            <div class="slds-form-element__control">
+                                <input id="account-name"
+                                       class="slds-input"
+                                       type="text"
+                                       placeholder="New account" />
+                            </div>
+                        </div>
+                        <button class="slds-button slds-button_brand slds-m-top_medium"
+                                type="submit">Create Account</button>
+                    </fieldset>
+                    <!-- / BOXED AREA -->
+                </form>
+                <!-- CREATE NEW ACCOUNT FORM -->
+            </div>
+            <!-- / CREATE NEW ACCOUNT -->
+        </div>
+        <!-- ACCOUNT LIST TABLE -->
+        <div id="account-list">
+            <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-no-row-hover">
+                <thead>
+                    <tr>
+                        <th class="slds-cell-shrink" />
+                        <th scope="col"
+                            class="slds-text-heading_label"
+                            title="Account Name">
+                            Account Name
+                        </th>
+                        <th scope="col"
+                            class="slds-text-heading_label"
+                            title="Account ID">
+                            Account ID
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Use the Apex model and controller to fetch server side data -->
+                    <aura:iteration items="{!v.accounts}"
+                                    var="account">
+                        <tr>
+                            <td scope="row">
+                                <span class="slds-icon_container slds-icon-standard-account">
+                                    <lightning:icon iconName="standard:account"
+                                                    size="medium" />
+                                </span>
+                            </td>
+                            <td title="{!account.Name}">
+                                {!account.Name}
+                            </td>
+                            <td title="{!account.Id}">
+                                {!account.Id}
+                            </td>
+                        </tr>
+                    </aura:iteration>
+                </tbody>
+            </table>
+
+
+
+
+
+        </div>
+        <!-- / ACCOUNT LIST TABLE -->
+        <!-- / PRIMARY CONTENT WRAPPER -->
+        ...
+        <!-- FOOTER -->
+        <footer role="contentinfo"
+                class="slds-p-around_large">
+            <!-- LAYOUT GRID -->
+            <div class="slds-grid slds-grid_align-spread">
+                <p class="slds-col">Salesforce Lightning Design System Example</p>
+                <p class="slds-col">&copy; Your Name Here</p>
+            </div>
+            <!-- / LAYOUT GRID -->
+        </footer>
+        <!-- / FOOTER -->
+    </div>
+    <!-- / REQUIRED SLDS WRAPPER -->
+
+
+</aura:component>

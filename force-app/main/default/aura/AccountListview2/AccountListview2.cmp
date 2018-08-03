@@ -1,0 +1,106 @@
+<!-- AccountListview using a lightning datatable.
+     Create using lightning recordeditform. -->
+<aura:component controller="AccountsController">
+    <aura:attribute name="accounts"
+                    type="Account[]" />
+    <aura:attribute name="accountColumns"
+                    type="List" />
+    <aura:handler name="init"
+                  value="{!this}"
+                  action="{!c.doInit}" />
+
+    <!-- REQUIRED SLDS WRAPPER -->
+    <div class="slds-scope slds-theme_default slds-m-around_x-small">
+        <!-- MASTHEAD -->
+        <p class="slds-text-heading_label slds-m-bottom_small">
+            Salesforce Lightning Design System Trailhead Module
+        </p>
+        <!-- / MASTHEAD -->
+        <!-- PAGE HEADER -->
+        <div class="slds-page-header"
+             role="banner">
+            <div class="slds-grid">
+                <div class="slds-col slds-has-flexi-truncate">
+                    <!-- HEADING AREA -->
+                    <div class="slds-media">
+                        <div class="slds-media__figure">
+                            <lightning:icon iconName="standard:user"
+                                            class="slds-icon-standard-account"
+                                            size="medium" />
+                        </div>
+                        <div class="slds-media__body">
+                            <p class="slds-text-title_caps slds-line-height_reset">Accounts</p>
+                            <h1 class="slds-page-header__title slds-m-right_small slds-align-middle slds-truncate"
+                                title="My Accounts">My Accounts</h1>
+                        </div>
+                    </div>
+                    <!-- / HEADING AREA -->
+                </div>
+                <div class="slds-col slds-no-flex slds-grid slds-align-top">
+                    <button class="slds-button slds-button_neutral">New Account</button>
+                </div>
+            </div>
+            <div class="slds-grid">
+                <div class="slds-col slds-align-bottom slds-p-top_small">
+                    <p class="slds-text-body_small">COUNT items</p>
+                </div>
+            </div>
+        </div>
+        <!-- / PAGE HEADER -->
+        <!-- PRIMARY CONTENT WRAPPER -->
+        <div class="myapp">
+            <!-- CREATE NEW ACCOUNT -->
+            <div aria-labelledby="newaccountform">
+                <!-- CREATE NEW ACCOUNT FORM -->
+                <!-- BOXED AREA -->
+                <fieldset class="slds-box slds-theme_default slds-container_small">
+                    <legend id="newaccountform"
+                            class="slds-text-heading_medium slds-p-vertical_medium">
+                        Add a new account
+                    </legend>
+                    <lightning:recordEditForm aura:id="createAccount"
+                                              objectApiName="Account"
+                                              onsuccess="{!c.saveComplete}">
+                        <lightning:messages />
+                        <lightning:inputField fieldName="Name"
+                                              aura:id="accountNameField" />
+                        <lightning:button aura:id="submit"
+                                          variant="brand"
+                                          type="submit"
+                                          label="Create Account"
+                                          class="slds-m-top_medium" />
+                    </lightning:recordEditForm>
+                </fieldset>
+                <!-- / BOXED AREA -->
+                <!-- CREATE NEW ACCOUNT FORM -->
+            </div>
+            <!-- / CREATE NEW ACCOUNT -->
+        </div>
+        <!-- ACCOUNT LIST TABLE -->
+        <div id="account-list">
+            <lightning:datatable keyField="Id"
+                                 data="{! v.accounts }"
+                                 columns="{! v.accountColumns }"
+                                 resizeColumnDisabled="true"
+                                 minColumnWidth="1"
+                                 hideCheckboxColumn="true" />
+        </div>
+        <!-- / ACCOUNT LIST TABLE -->
+        <!-- / PRIMARY CONTENT WRAPPER -->
+        ...
+        <!-- FOOTER -->
+        <footer role="contentinfo"
+                class="slds-p-around_large">
+            <!-- LAYOUT GRID -->
+            <div class="slds-grid slds-grid_align-spread">
+                <p class="slds-col">Salesforce Lightning Design System Example</p>
+                <p class="slds-col">&copy; Your Name Here</p>
+            </div>
+            <!-- / LAYOUT GRID -->
+        </footer>
+        <!-- / FOOTER -->
+    </div>
+    <!-- / REQUIRED SLDS WRAPPER -->
+
+
+</aura:component>
