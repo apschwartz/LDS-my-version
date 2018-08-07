@@ -21,13 +21,10 @@
     },
 
     saveComplete: function (component, event, helper) {
-        helper.getAccountList(component);
+        // Hide recordEditForm to force input field value to be cleared.
+        component.set("v.showREform", false);
 
-        // Grab inputField needing to be reset.  Attempt to change it.
-        var cmp = component.find("accountNameField");
-        console.log("current value: " + cmp.get("v.value"));    // Display current value
-        cmp.set("v.value", "a new value");                      // Change it (hopefully)
-        console.log("new value: " + cmp.get("v.value"));        // Display updated value
+        helper.getAccountList(component);
     },
 
 })

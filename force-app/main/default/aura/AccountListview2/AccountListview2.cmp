@@ -5,6 +5,10 @@
                     type="Account[]" />
     <aura:attribute name="accountColumns"
                     type="List" />
+    <!-- Hide and show recordEditForm to force clearing of input data -->
+    <aura:attribute name="showREform"
+                    type="Boolean"
+                    default="true" />
     <aura:handler name="init"
                   value="{!this}"
                   action="{!c.doInit}" />
@@ -58,18 +62,20 @@
                             class="slds-text-heading_medium slds-p-vertical_medium">
                         Add a new account
                     </legend>
-                    <lightning:recordEditForm aura:id="createAccount"
-                                              objectApiName="Account"
-                                              onsuccess="{!c.saveComplete}">
-                        <lightning:messages />
-                        <lightning:inputField fieldName="Name"
-                                              aura:id="accountNameField" />
-                        <lightning:button aura:id="submit"
-                                          variant="brand"
-                                          type="submit"
-                                          label="Create Account"
-                                          class="slds-m-top_medium" />
-                    </lightning:recordEditForm>
+                    <aura:if isTrue="{!v.showREform}">
+                        <lightning:recordEditForm aura:id="createAccount"
+                                                  objectApiName="Account"
+                                                  onsuccess="{!c.saveComplete}">
+                            <lightning:messages />
+                            <lightning:inputField fieldName="Name"
+                                                  aura:id="accountNameField" />
+                            <lightning:button aura:id="submit"
+                                              variant="brand"
+                                              type="submit"
+                                              label="Create Account"
+                                              class="slds-m-top_medium" />
+                        </lightning:recordEditForm>
+                    </aura:if>
                 </fieldset>
                 <!-- / BOXED AREA -->
                 <!-- CREATE NEW ACCOUNT FORM -->
